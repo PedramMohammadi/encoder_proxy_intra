@@ -33,6 +33,39 @@ We minimize a weighted sum of:
 
 **PSNR** is also logged for visibility during training.
 
+## Runtime environments
+
+This codebase is **Vertex AI–first**:
+
+- **Primary target**: Google Vertex AI (custom training jobs), GCS storage, and `gs://` paths.
+- **Local runs**: It is supported, but you may need to turn off cloud-only features and/or install extra packages.
+
+### Run on Google Vertex AI
+
+```bash
+PROJECT_ID="<YOUR_PROJECT>"
+REGION="us-central1"
+BUCKET_CODE="gs://<YOUR_CODE_BUCKET>"          # where your package .tar.gz lives
+BUCKET_DATA="gs://<YOUR_DATA_BUCKET>"          # dataset/frames/CSV
+BUCKET_OUT="<YOUR_OUTPUT_BUCKET>"               # for checkpoint uploads
+PKG_URI="$BUCKET_CODE/encoder_proxy-0.1.tar.gz" # or your existing trainer-0.1.tar.gz
+PY_IMAGE="us-docker.pkg.dev/vertex-ai/training/pytorch-gpu.2-0.py310:latest"
+
+gcloud config set project "$PROJECT_ID"
+
+gcloud ai custom-jobs create \
+  --region="$REGION" \
+  --display-name="encoder-proxy-full-training" \
+  --python-package-uris="$PKG_URI" \
+  --worker-pool-spec=machine-type=g2-standard-8,replica-count=1,accelerator-type=NVIDIA_L4,accelerator-count=1,executor-image-uri="$PY_IMAGE",python-module=encoder_proxy.train.task \
+  --args="--csv_path=$BUCKET_DATA/dataset/encoder_proxy_training.csv" \
+  --args="--frame_dir=$BUCKET_DATA/dataset/" \
+  --args="--save_dir=/tmp/checkpoints" \
+  --args="--gcs_bucket=$BUCKET_OUT" \
+  --args="--save_best" \
+  --args="--device=cuda"
+```
+
 ## Repository layout
 ```text
 encoder-proxy-intra/
@@ -49,6 +82,4 @@ encoder-proxy-intra/
 │  ├─ compress.py                    # All-intra encode (x265) + per-frame QP/bits logs
 │  ├─ extract_frames.py              # Extract Y (grayscale) frames for ref & distorted
 │  ├─ generate_csv.py                # Assemble training CSV (+ optional bitrate balancing)
-│  └─ infer.py                       # (COMING SOON) Visualize recon vs. distorted
-
-
+```
