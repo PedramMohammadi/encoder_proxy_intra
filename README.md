@@ -68,14 +68,17 @@ gcloud ai custom-jobs create \
 
 ## Repository layout
 ```text
-encoder-proxy-intra/
+encoder_proxy_intra/
+├─ README.md
+├─ LICENSE
+├─ gitignore
 ├─ encoder_proxy/
 │  ├─ data/
 │  │  └─ encoder_data_loader.py      # CSV-driven dataset (local or GCS), Y-channel crops
 │  ├─ models/
 │  │  └─ model.py                    # GDN, FiLM, residual (conv/deconv), STE rounding
 │  └─ train/
-│     └─ task.py                     # Training loop & CLI (seeding, early stop, MS-SSIM, etc.)
+│     └─ train.py                     # Training loop & CLI (seeding, early stop, MS-SSIM, etc.)
 │
 ├─ scripts/
 │  ├─ dataset_split.py               # Split UGC dataset into Train/Val/Test
