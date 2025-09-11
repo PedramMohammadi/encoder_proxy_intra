@@ -99,8 +99,8 @@ for split in splits:
                 ]
 
             cmd += [
-                "-i", str(input_path),
                 "-pix_fmt", "yuv420p",
+                "-i", str(input_path),
                 "-c:v", encoders[args.encoder],
                 "-crf", str(crf_val),
             ]
