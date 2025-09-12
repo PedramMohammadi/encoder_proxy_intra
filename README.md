@@ -24,7 +24,7 @@ Found a bug or have an improvement? Contributions are welcome! 🙌
 I will review merge requests and leave feedback or merge when ready. Thanks for helping improve the project! 🚀
 
 # Dataset
-This project trains and validates on **YouTube UGC (User-Generated Content) Dataset** which contains short real-world clips captured on phones, action cams, consumer gear, then uploaded with a wide range of native distortions such as blockiness, blur, banding, noise, and jerkiness. Training on this dataset has a wide variety of advantages such as:
+This project trains and validates on **YouTube UGC (User-Generated Content) 720p Dataset** which contains short real-world clips captured on phones, action cams, consumer gear, then uploaded with a wide range of native distortions such as blockiness, blur, banding, noise, and jerkiness. Training on this dataset has a wide variety of advantages such as:
 - **Real-world distribution:** UGC covers the long tail of scenes, devices, and capture conditions
 - **High content diversity:** Strong variation in motion, texture, lighting, scene dynamics, and camera pipelines improves **generalization** of the learned mapping from input frame to reconstructed frame
 
