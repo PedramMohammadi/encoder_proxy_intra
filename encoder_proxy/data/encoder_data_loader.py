@@ -18,7 +18,7 @@ except ImportError:
 
 
 def _as_posix(p: str) -> str:
-    # Converting backslashes to forward slashes and removing redundant prefixes
+    # Convert backslashes to forward slashes and strip redundant prefixes
     return str(p).replace("\\", "/")
 
 def _split_gs(url: str):
@@ -33,21 +33,8 @@ def _split_gs(url: str):
 
 
 class EncoderDataset(Dataset):
-    """
-    CSV-driven dataset for encoder proxy training.
-
-    Expects CSV columns:
-      - split: "Training" | "Validation" | "Testing"
-      - height, width, fps: ints (used for sanity only)
-      - crf: int (0..51), normalized to [0,1] at return time
-      - frame_qp: int (optional)
-      - per_frame_bits: int (optional)
-      - ref_frame_path, dist_frame_path: str (relative to root_dir or absolute gs://)
-    Returns: (x_ref: FloatTensor[1,H,W], crf_norm: FloatTensor[1], y_dist: FloatTensor[1,H,W])
-    """
     def __init__(self, csv_file, root_dir, crop_size=256, fixed_crop=False, split=None):
-        
-        # Read CSV with strict schema and drop rows with missing paths
+        # Read CSV with consistent dtypes (same as your original)
         self.data = pd.read_csv(
             csv_file,
             low_memory=False,
@@ -63,7 +50,7 @@ class EncoderDataset(Dataset):
             }
         )
 
-        # Optional split filter
+        # Optional split filter (same behavior)
         if split:
             self.data = self.data[self.data["split"] == split].reset_index(drop=True)
 
@@ -156,5 +143,8 @@ class EncoderDataset(Dataset):
 
         # CRF for conditioning
         crf = torch.tensor([row["crf"] / 51.0], dtype=torch.float32)
+
+        # Bits-per-pixel target
+        frame_pixels = row["width"] * row["height"]
 
         return (x, crf, y_true)

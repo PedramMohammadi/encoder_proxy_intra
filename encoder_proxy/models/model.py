@@ -6,8 +6,6 @@ import torch.nn.functional as F
 # GDN Layer (Generalized Divisive Normalization)
 # ------------------------------
 class GDN(nn.Module):
-    """GDN as a learned local divisive normalization.
-    Uses softplus-reparameterized beta/gamma to keep them positive."""
     def __init__(self, channels, inverse=False):
         super(GDN, self).__init__()
         self.inverse = inverse
@@ -26,7 +24,6 @@ class GDN(nn.Module):
 # FiLM Layer for CRF Conditioning
 # ------------------------------
 class FiLM(nn.Module):
-    """FiLM conditioning: per-channel scale/shift from a 1D CRF input in [0,1]."""
     def __init__(self, in_channels, hidden_dim=32):
         super(FiLM, self).__init__()
         self.gamma = nn.Sequential(
@@ -50,7 +47,6 @@ class FiLM(nn.Module):
 # Residual Encoder Block
 # ------------------------------
 class ResidualConvBlock(nn.Module):
-    """Conv + GDN + Dropout with residual skip (1x1 if needed)."""
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=2, padding=1):
         super(ResidualConvBlock, self).__init__()
         self.conv = nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)
@@ -74,7 +70,6 @@ class ResidualConvBlock(nn.Module):
 # Residual Decoder Block
 # ------------------------------
 class ResidualDeconvBlock(nn.Module):
-    """ConvTranspose + inverse-GDN + Dropout with residual skip."""
     def __init__(self, in_channels, out_channels, kernel_size=3, stride=2, padding=1, output_padding=1):
         super(ResidualDeconvBlock, self).__init__()
         self.deconv = nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride, padding, output_padding)
@@ -98,20 +93,7 @@ class ResidualDeconvBlock(nn.Module):
 # Encoder Proxy Model
 # ------------------------------
 class EncoderProxy(nn.Module):
-    """CRF-conditioned autoencoder proxy for all-intra x265.
 
-        Args:
-            bottleneck_channels: channels at the quantized bottleneck.
-            film_hidden_dim: hidden size for FiLM MLPs.
-            enc_channels: optional override for encoder channel plan.
-            dec_channels: optional override for decoder channel plan.
-            dropout_p: dropout probability inside residual blocks.
-            quant_scale: scale applied before rounding in the bottleneck.
-
-    Notes:
-        - With default strides=2 per block, input H,W should be divisible by 16.
-        - Output is sigmoid-clamped to [0,1] (grayscale Y).
-    """
     def __init__(self, bottleneck_channels, film_hidden_dim):  # Config dict for hyperparameters
         super(EncoderProxy, self).__init__()
 

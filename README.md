@@ -3,7 +3,7 @@
 This repository provides a deep learning model that **approximates a video encoder in all-intra mode**.  
 This repo provides a full, reproducible pipeline from **dataset split → compression (x265) → frame extraction → CSV metadata → training** as well as cloud-friendly options and seeds for determinism.
 
-**Project status:** Training is in progress. I am not publishing quantitative results yet. The repository is focused on clean setup and a smooth developer experience. Pretrained weights, validation plots, and evaluation scripts will be added once training stabilizes.
+**Project status:** Training and evaluation are finalized. The evaluation results are available in its designated folder in this git repository.
 
 This work builds a **neural proxy** that:
 - takes a **reference (original) frame** and a **CRF**,
@@ -17,7 +17,7 @@ This project trains and validates on **YouTube UGC (User-Generated Content) Data
 - **Real-world distribution:** UGC covers the long tail of scenes, devices, and capture conditions
 - **High content diversity:** Strong variation in motion, texture, lighting, scene dynamics, and camera pipelines improves **generalization** of the learned mapping from input frame to reconstructed frame
 
- I generated distorted frames by compressing each input sequence with **x265** in **all-intra** mode across a **wide CRF sweep: 19, 23, 27, 31, 35, 39, 43, 47, 51** to span low→high quality. To ensure all quality levels are well represented I apply binning and sample an approximately equal number of sequences per bin so training sees a balanced spread from visually pristine to very compressed, improving robustness of the learned behavior.
+ I generated distorted frames by compressing each raw YUV input sequence with **x265** in **all-intra** mode across a **wide CRF sweep: 19, 23, 27, 31, 35, 39, 43, 47, 51** to span low→high quality. To ensure all quality levels are well represented I apply binning and sample an approximately equal number of sequences per bin so training sees a balanced spread from visually pristine to very compressed, improving robustness of the learned behavior.
 
 ## Model architecture
 
@@ -78,8 +78,10 @@ encoder_proxy_intra/
 │  ├─ models/
 │  │  └─ model.py                    # GDN, FiLM, residual (conv/deconv), STE rounding
 │  └─ train/
-│     └─ train.py                     # Training loop & CLI (seeding, early stop, MS-SSIM, etc.)
-│
+│     └─ train.py                    # Training loop & CLI (seeding, early stop, MS-SSIM, etc.)
+│  └─ inference/
+│     └─ infer_and_eval.py           # Inference and evaluation script
+│     └─ README.md                   # Inference and evaluation results and analysis
 ├─ scripts/
 │  ├─ dataset_split.py               # Split UGC dataset into Train/Val/Test
 │  ├─ compress.py                    # All-intra encode (x265) + per-frame QP/bits logs
