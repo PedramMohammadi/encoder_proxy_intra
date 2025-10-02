@@ -86,6 +86,7 @@ encoder_proxy_intra/
 ├─ README.md
 ├─ LICENSE
 ├─ gitignore
+├─ architecture.svg
 ├─ encoder_proxy/
 │  ├─ data/
 │  │  └─ encoder_data_loader.py      # CSV-driven dataset (local or GCS), Y-channel crops
