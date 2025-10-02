@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3530pt" height="207pt" viewBox="0.00 0.00 3530.00 207.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 202.5)">
+<title>EncoderProxy</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-202.5 3526.45,-202.5 3526.45,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_enc</title>
+<path fill="none" stroke="#b3b3b3" d="M106.58,-46.5C106.58,-46.5 1299.88,-46.5 1299.88,-46.5 1305.88,-46.5 1311.88,-52.5 1311.88,-58.5 1311.88,-58.5 1311.88,-132.5 1311.88,-132.5 1311.88,-138.5 1305.88,-144.5 1299.88,-144.5 1299.88,-144.5 106.58,-144.5 106.58,-144.5 100.58,-144.5 94.58,-138.5 94.58,-132.5 94.58,-132.5 94.58,-58.5 94.58,-58.5 94.58,-52.5 100.58,-46.5 106.58,-46.5"/>
+<text xml:space="preserve" text-anchor="middle" x="703.23" y="-131.5" font-family="Arial" font-size="10.00">Encoder</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_film</title>
+<path fill="none" stroke="#999999" d="M1343.88,-13.5C1343.88,-13.5 1881.61,-13.5 1881.61,-13.5 1887.61,-13.5 1893.61,-19.5 1893.61,-25.5 1893.61,-25.5 1893.61,-178.5 1893.61,-178.5 1893.61,-184.5 1887.61,-190.5 1881.61,-190.5 1881.61,-190.5 1343.88,-190.5 1343.88,-190.5 1337.88,-190.5 1331.88,-184.5 1331.88,-178.5 1331.88,-178.5 1331.88,-25.5 1331.88,-25.5 1331.88,-19.5 1337.88,-13.5 1343.88,-13.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1612.74" y="-177.5" font-family="Arial" font-size="10.00">FiLM — feature-wise linear modulation</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_dec</title>
+<path fill="none" stroke="#b3b3b3" d="M2193.01,-52.5C2193.01,-52.5 3502.45,-52.5 3502.45,-52.5 3508.45,-52.5 3514.45,-58.5 3514.45,-64.5 3514.45,-64.5 3514.45,-138.5 3514.45,-138.5 3514.45,-144.5 3508.45,-150.5 3502.45,-150.5 3502.45,-150.5 2193.01,-150.5 2193.01,-150.5 2187.01,-150.5 2181.01,-144.5 2181.01,-138.5 2181.01,-138.5 2181.01,-64.5 2181.01,-64.5 2181.01,-58.5 2187.01,-52.5 2193.01,-52.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2847.73" y="-137.5" font-family="Arial" font-size="10.00">Decoder</text>
+</g>
+<!-- x -->
+<g id="node1" class="node">
+<title>x</title>
+<polygon fill="none" stroke="black" points="0,-67.5 0,-103.5 66.58,-103.5 66.58,-67.5 0,-67.5"/>
+<text xml:space="preserve" text-anchor="middle" x="33.29" y="-82.5" font-family="Arial" font-size="10.00">Input frame</text>
+</g>
+<!-- e1 -->
+<g id="node3" class="node">
+<title>e1</title>
+<polygon fill="none" stroke="black" points="102.58,-55.5 102.58,-115.5 375.91,-115.5 375.91,-55.5 102.58,-55.5"/>
+<text xml:space="preserve" text-anchor="middle" x="239.24" y="-102.5" font-family="Arial" font-size="10.00">Residual Conv Block</text>
+<polyline fill="none" stroke="black" points="102.58,-95.5 375.91,-95.5"/>
+<text xml:space="preserve" text-anchor="middle" x="239.24" y="-82.5" font-family="Arial" font-size="10.00">2D Conv → Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="102.58,-75.5 375.91,-75.5"/>
+<text xml:space="preserve" text-anchor="middle" x="239.24" y="-62.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- x&#45;&gt;e1 -->
+<g id="edge8" class="edge">
+<title>x-&gt;e1</title>
+<path fill="none" stroke="black" d="M67.06,-85.5C74.18,-85.5 82.16,-85.5 90.67,-85.5"/>
+<polygon fill="black" stroke="black" points="90.63,-89 100.63,-85.5 90.63,-82 90.63,-89"/>
+</g>
+<!-- crf -->
+<g id="node2" class="node">
+<title>crf</title>
+<polygon fill="none" stroke="black" points="1140.22,-0.5 1140.22,-36.5 1194.22,-36.5 1194.22,-0.5 1140.22,-0.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1167.22" y="-15.5" font-family="Arial" font-size="10.00">CRF</text>
+</g>
+<!-- f_join -->
+<g id="node7" class="node">
+<title>f_join</title>
+<polygon fill="none" stroke="black" points="1411.61,-70.5 1339.88,-52.5 1411.61,-34.5 1483.35,-52.5 1411.61,-70.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1411.61" y="-49.5" font-family="Arial" font-size="10.00">Broadcast CRF</text>
+</g>
+<!-- crf&#45;&gt;f_join -->
+<g id="edge10" class="edge">
+<title>crf-&gt;f_join</title>
+<path fill="none" stroke="black" d="M1194.62,-22.2C1232.3,-27.49 1302.48,-37.33 1352.62,-44.37"/>
+<polygon fill="black" stroke="black" points="1352.06,-47.82 1362.45,-45.74 1353.03,-40.89 1352.06,-47.82"/>
+</g>
+<!-- e2 -->
+<g id="node4" class="node">
+<title>e2</title>
+<polygon fill="none" stroke="black" points="411.91,-55.5 411.91,-115.5 685.23,-115.5 685.23,-55.5 411.91,-55.5"/>
+<text xml:space="preserve" text-anchor="middle" x="548.57" y="-102.5" font-family="Arial" font-size="10.00">Residual Conv Block</text>
+<polyline fill="none" stroke="black" points="411.91,-95.5 685.23,-95.5"/>
+<text xml:space="preserve" text-anchor="middle" x="548.57" y="-82.5" font-family="Arial" font-size="10.00">2D Conv → Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="411.91,-75.5 685.23,-75.5"/>
+<text xml:space="preserve" text-anchor="middle" x="548.57" y="-62.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- e1&#45;&gt;e2 -->
+<g id="edge1" class="edge">
+<title>e1-&gt;e2</title>
+<path fill="none" stroke="black" d="M376.38,-85.5C384.35,-85.5 392.38,-85.5 400.38,-85.5"/>
+<polygon fill="black" stroke="black" points="400.17,-89 410.17,-85.5 400.17,-82 400.17,-89"/>
+</g>
+<!-- e3 -->
+<g id="node5" class="node">
+<title>e3</title>
+<polygon fill="none" stroke="black" points="721.23,-55.5 721.23,-115.5 994.55,-115.5 994.55,-55.5 721.23,-55.5"/>
+<text xml:space="preserve" text-anchor="middle" x="857.89" y="-102.5" font-family="Arial" font-size="10.00">Residual Conv Block</text>
+<polyline fill="none" stroke="black" points="721.23,-95.5 994.55,-95.5"/>
+<text xml:space="preserve" text-anchor="middle" x="857.89" y="-82.5" font-family="Arial" font-size="10.00">2D Conv → Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="721.23,-75.5 994.55,-75.5"/>
+<text xml:space="preserve" text-anchor="middle" x="857.89" y="-62.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- e2&#45;&gt;e3 -->
+<g id="edge2" class="edge">
+<title>e2-&gt;e3</title>
+<path fill="none" stroke="black" d="M685.71,-85.5C693.67,-85.5 701.7,-85.5 709.71,-85.5"/>
+<polygon fill="black" stroke="black" points="709.49,-89 719.49,-85.5 709.49,-82 709.49,-89"/>
+</g>
+<!-- e4 -->
+<g id="node6" class="node">
+<title>e4</title>
+<polygon fill="none" stroke="black" points="1030.55,-55.5 1030.55,-115.5 1303.88,-115.5 1303.88,-55.5 1030.55,-55.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1167.22" y="-102.5" font-family="Arial" font-size="10.00">Residual Conv Block</text>
+<polyline fill="none" stroke="black" points="1030.55,-95.5 1303.88,-95.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1167.22" y="-82.5" font-family="Arial" font-size="10.00">2D Conv → Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="1030.55,-75.5 1303.88,-75.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1167.22" y="-62.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- e3&#45;&gt;e4 -->
+<g id="edge3" class="edge">
+<title>e3-&gt;e4</title>
+<path fill="none" stroke="black" d="M995.03,-85.5C1003,-85.5 1011.03,-85.5 1019.03,-85.5"/>
+<polygon fill="black" stroke="black" points="1018.81,-89 1028.81,-85.5 1018.81,-82 1018.81,-89"/>
+</g>
+<!-- e4&#45;&gt;f_join -->
+<g id="edge9" class="edge">
+<title>e4-&gt;f_join</title>
+<path fill="none" stroke="black" d="M1304.3,-66.97C1321.07,-64.69 1337.46,-62.46 1352.15,-60.46"/>
+<polygon fill="black" stroke="black" points="1352.61,-63.93 1362.04,-59.11 1351.66,-56.99 1352.61,-63.93"/>
+</g>
+<!-- f_gamma_mlp -->
+<g id="node8" class="node">
+<title>f_gamma_mlp</title>
+<polygon fill="none" stroke="black" points="1519.35,-22.5 1519.35,-82.5 1744.89,-82.5 1744.89,-22.5 1519.35,-22.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-69.5" font-family="Arial" font-size="10.00">γ Multi-Layer Perceptron: Fully connected layer</text>
+<polyline fill="none" stroke="black" points="1519.35,-62.5 1744.89,-62.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-49.5" font-family="Arial" font-size="10.00">ReLU</text>
+<polyline fill="none" stroke="black" points="1519.35,-42.5 1744.89,-42.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-29.5" font-family="Arial" font-size="10.00">Fully connected layer</text>
+</g>
+<!-- f_join&#45;&gt;f_gamma_mlp -->
+<g id="edge11" class="edge">
+<title>f_join-&gt;f_gamma_mlp</title>
+<path fill="none" stroke="black" d="M1485.37,-52.5C1492.55,-52.5 1499.96,-52.5 1507.46,-52.5"/>
+<polygon fill="black" stroke="black" points="1507.38,-56 1517.38,-52.5 1507.38,-49 1507.38,-56"/>
+</g>
+<!-- f_beta_mlp -->
+<g id="node9" class="node">
+<title>f_beta_mlp</title>
+<polygon fill="none" stroke="black" points="1519.35,-101.5 1519.35,-161.5 1744.89,-161.5 1744.89,-101.5 1519.35,-101.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-148.5" font-family="Arial" font-size="10.00">β Multi-Layer Perceptron: Fully connected layer</text>
+<polyline fill="none" stroke="black" points="1519.35,-141.5 1744.89,-141.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-128.5" font-family="Arial" font-size="10.00">ReLU</text>
+<polyline fill="none" stroke="black" points="1519.35,-121.5 1744.89,-121.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1632.12" y="-108.5" font-family="Arial" font-size="10.00">Fully connected layer</text>
+</g>
+<!-- f_join&#45;&gt;f_beta_mlp -->
+<g id="edge12" class="edge">
+<title>f_join-&gt;f_beta_mlp</title>
+<path fill="none" stroke="black" d="M1441.09,-63.37C1462.55,-71.52 1492.74,-82.87 1519.35,-92.5 1523.7,-94.07 1528.15,-95.67 1532.64,-97.28"/>
+<polygon fill="black" stroke="black" points="1531.17,-100.47 1541.77,-100.52 1533.52,-93.87 1531.17,-100.47"/>
+</g>
+<!-- f_apply -->
+<g id="node10" class="node">
+<title>f_apply</title>
+<polygon fill="none" stroke="black" points="1833.25,-109.5 1780.89,-91.5 1833.25,-73.5 1885.61,-91.5 1833.25,-109.5"/>
+<text xml:space="preserve" text-anchor="middle" x="1833.25" y="-88.5" font-family="Arial" font-size="10.00">x·(1+γ)+β</text>
+</g>
+<!-- f_gamma_mlp&#45;&gt;f_apply -->
+<g id="edge13" class="edge">
+<title>f_gamma_mlp-&gt;f_apply</title>
+<path fill="none" stroke="black" d="M1745.2,-74.45C1760.09,-77.37 1774.61,-80.21 1787.38,-82.71"/>
+<polygon fill="black" stroke="black" points="1786.62,-86.13 1797.1,-84.62 1787.96,-79.26 1786.62,-86.13"/>
+</g>
+<!-- f_beta_mlp&#45;&gt;f_apply -->
+<g id="edge14" class="edge">
+<title>f_beta_mlp-&gt;f_apply</title>
+<path fill="none" stroke="black" d="M1745.2,-108.99C1760.23,-105.97 1774.87,-103.03 1787.73,-100.44"/>
+<polygon fill="black" stroke="black" points="1788.4,-103.88 1797.52,-98.48 1787.02,-97.02 1788.4,-103.88"/>
+</g>
+<!-- ste -->
+<g id="node11" class="node">
+<title>ste</title>
+<polygon fill="none" stroke="black" points="2037.31,-109.5 1921.61,-91.5 2037.31,-73.5 2153.01,-91.5 2037.31,-109.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2037.31" y="-88.5" font-family="Arial" font-size="10.00">Straight-Through Estimator</text>
+</g>
+<!-- f_apply&#45;&gt;ste -->
+<g id="edge15" class="edge">
+<title>f_apply-&gt;ste</title>
+<path fill="none" stroke="black" d="M1887.07,-91.5C1893.52,-91.5 1900.31,-91.5 1907.29,-91.5"/>
+<polygon fill="black" stroke="black" points="1906.88,-95 1916.88,-91.5 1906.88,-88 1906.88,-95"/>
+</g>
+<!-- d1 -->
+<g id="node12" class="node">
+<title>d1</title>
+<polygon fill="none" stroke="black" points="2189.01,-61.5 2189.01,-121.5 2532.37,-121.5 2532.37,-61.5 2189.01,-61.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2360.69" y="-108.5" font-family="Arial" font-size="10.00">Residual Deconv Block</text>
+<polyline fill="none" stroke="black" points="2189.01,-101.5 2532.37,-101.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2360.69" y="-88.5" font-family="Arial" font-size="10.00">Conv Transpose → Inverse Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="2189.01,-81.5 2532.37,-81.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2360.69" y="-68.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- ste&#45;&gt;d1 -->
+<g id="edge16" class="edge">
+<title>ste-&gt;d1</title>
+<path fill="none" stroke="black" d="M2156.15,-91.5C2163.15,-91.5 2170.26,-91.5 2177.43,-91.5"/>
+<polygon fill="black" stroke="black" points="2177.22,-95 2187.22,-91.5 2177.22,-88 2177.22,-95"/>
+</g>
+<!-- d2 -->
+<g id="node13" class="node">
+<title>d2</title>
+<polygon fill="none" stroke="black" points="2568.37,-61.5 2568.37,-121.5 2911.72,-121.5 2911.72,-61.5 2568.37,-61.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2740.05" y="-108.5" font-family="Arial" font-size="10.00">Residual Deconv Block</text>
+<polyline fill="none" stroke="black" points="2568.37,-101.5 2911.72,-101.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2740.05" y="-88.5" font-family="Arial" font-size="10.00">Conv Transpose → Inverse Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="2568.37,-81.5 2911.72,-81.5"/>
+<text xml:space="preserve" text-anchor="middle" x="2740.05" y="-68.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- d1&#45;&gt;d2 -->
+<g id="edge4" class="edge">
+<title>d1-&gt;d2</title>
+<path fill="none" stroke="black" d="M2532.7,-91.5C2540.65,-91.5 2548.65,-91.5 2556.63,-91.5"/>
+<polygon fill="black" stroke="black" points="2556.38,-95 2566.38,-91.5 2556.38,-88 2556.38,-95"/>
+</g>
+<!-- d3 -->
+<g id="node14" class="node">
+<title>d3</title>
+<polygon fill="none" stroke="black" points="2947.72,-61.5 2947.72,-121.5 3291.08,-121.5 3291.08,-61.5 2947.72,-61.5"/>
+<text xml:space="preserve" text-anchor="middle" x="3119.4" y="-108.5" font-family="Arial" font-size="10.00">Residual Deconv Block</text>
+<polyline fill="none" stroke="black" points="2947.72,-101.5 3291.08,-101.5"/>
+<text xml:space="preserve" text-anchor="middle" x="3119.4" y="-88.5" font-family="Arial" font-size="10.00">Conv Transpose → Inverse Generalized Divisive Normalization → Dropout</text>
+<polyline fill="none" stroke="black" points="2947.72,-81.5 3291.08,-81.5"/>
+<text xml:space="preserve" text-anchor="middle" x="3119.4" y="-68.5" font-family="Arial" font-size="10.00">Residual</text>
+</g>
+<!-- d2&#45;&gt;d3 -->
+<g id="edge5" class="edge">
+<title>d2-&gt;d3</title>
+<path fill="none" stroke="black" d="M2912.06,-91.5C2920.01,-91.5 2928.01,-91.5 2935.99,-91.5"/>
+<polygon fill="black" stroke="black" points="2935.74,-95 2945.74,-91.5 2935.74,-88 2935.74,-95"/>
+</g>
+<!-- d4 -->
+<g id="node15" class="node">
+<title>d4</title>
+<polygon fill="none" stroke="black" points="3327.08,-73.5 3327.08,-109.5 3416.45,-109.5 3416.45,-73.5 3327.08,-73.5"/>
+<text xml:space="preserve" text-anchor="middle" x="3371.77" y="-88.5" font-family="Arial" font-size="10.00">Conv Transpose</text>
+</g>
+<!-- d3&#45;&gt;d4 -->
+<g id="edge6" class="edge">
+<title>d3-&gt;d4</title>
+<path fill="none" stroke="black" d="M3291.55,-91.5C3299.9,-91.5 3307.93,-91.5 3315.47,-91.5"/>
+<polygon fill="black" stroke="black" points="3315.36,-95 3325.36,-91.5 3315.36,-88 3315.36,-95"/>
+</g>
+<!-- sig -->
+<g id="node16" class="node">
+<title>sig</title>
+<polygon fill="none" stroke="black" points="3452.45,-73.5 3452.45,-109.5 3506.45,-109.5 3506.45,-73.5 3452.45,-73.5"/>
+<text xml:space="preserve" text-anchor="middle" x="3479.45" y="-88.5" font-family="Arial" font-size="10.00">Sigmoid</text>
+</g>
+<!-- d4&#45;&gt;sig -->
+<g id="edge7" class="edge">
+<title>d4-&gt;sig</title>
+<path fill="none" stroke="black" d="M3416.67,-91.5C3424.65,-91.5 3432.92,-91.5 3440.7,-91.5"/>
+<polygon fill="black" stroke="black" points="3440.54,-95 3450.54,-91.5 3440.54,-88 3440.54,-95"/>
+</g>
+</g>
+</svg>

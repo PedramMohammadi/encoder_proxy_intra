@@ -5,6 +5,9 @@ This repo provides a full, reproducible pipeline from **dataset split → compre
 
 **Project status:** Training and evaluation are finalized. The evaluation results are available in its designated folder in this git repository.
 
+**Model Architecture**
+![VMAF Proxy architecture](./architecture.svg "VMAF Proxy architecture")
+
 This work builds a **neural proxy** that:
 - takes a **reference (original) frame** and a **CRF**,
 - passes it through a **CRF-conditioned autoencoder** with a **quantization bottleneck**, and

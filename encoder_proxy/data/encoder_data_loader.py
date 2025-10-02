@@ -144,7 +144,4 @@ class EncoderDataset(Dataset):
         # CRF for conditioning
         crf = torch.tensor([row["crf"] / 51.0], dtype=torch.float32)
 
-        # Bits-per-pixel target
-        frame_pixels = row["width"] * row["height"]
-
         return (x, crf, y_true)
